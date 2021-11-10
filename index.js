@@ -18,12 +18,11 @@ app.use(
 
 app.use(express.urlencoded({ extended: false }));
 app.use("/users", userRoutes);
-console.log(process.env.mongodb_password)
+console.log(process.env.mongodb_password);
 //connect to mongodb
 mongoose.Promise = global.Promise;
 try {
-  const uri =
-  `mongodb+srv://Honorableisrael:${process.env.mongodb_password}@clusterhilary-vscri.mongodb.net/Toptutors?retryWrites=true&w=majority`;
+  const uri = `mongodb+srv://Honorableisrael:${process.env.mongodb_password}@clusterhilary-vscri.mongodb.net/Toptutors?retryWrites=true&w=majority`;
   mongoose.connect(uri, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
@@ -37,6 +36,14 @@ try {
 }
 
 const port = process.env.PORT || 8080;
+const corsOpts = {
+  origin: "*",
+
+  methods: ["GET", "POST"],
+
+  allowedHeaders: ["Content-Type"],
+};
+app.use(cors(corsOpts));
 app.use(cors());
 app.listen(port, () => {
   console.log("server is running on port" + port);
