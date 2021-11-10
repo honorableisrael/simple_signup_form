@@ -6,6 +6,14 @@ var cors = require("cors");
 var dotenv = require("dotenv");
 dotenv.config();
 
+const corsOpts = {
+  origin: "*",
+
+  methods: ["GET", "POST"],
+
+  allowedHeaders: ["Content-Type"],
+};
+app.use(cors(corsOpts));
 app.use(
   express.json({
     inflate: true,
@@ -36,14 +44,7 @@ try {
 }
 
 const port = process.env.PORT || 8080;
-const corsOpts = {
-  origin: "*",
 
-  methods: ["GET", "POST"],
-
-  allowedHeaders: ["Content-Type"],
-};
-app.use(cors(corsOpts));
 app.listen(port, () => {
   console.log("server is running on port" + port);
 });
