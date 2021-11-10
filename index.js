@@ -44,7 +44,6 @@ const corsOpts = {
   allowedHeaders: ["Content-Type"],
 };
 app.use(cors(corsOpts));
-app.use(cors());
 app.listen(port, () => {
   console.log("server is running on port" + port);
 });
